@@ -1,33 +1,25 @@
-import React from 'react';
-import { MyButton } from '../../components/ux/my-button';
-import { useLocalStorage } from '../../hooks/use-local-storage';
+import { Button } from '../../components/ux/button';
 import { useFetch } from '../../hooks/use-fetch';
+import { useUrlState } from '../../hooks/use-url-state';
+
+
+const  pageNumbers = [1, 2, 3, 4, 5];
 
 export const UseEffectPage = () => {
-  const [page, setPage] = React.useState(1);
+  const [page, setPage] = useUrlState('page', 1);
   const [todos, { isLoading }] = useFetch(`https://jsonplaceholder.typicode.com/todos?_page=${page}&_per_page=10`);
-  const [name, setName] = useLocalStorage('name', undefined);
 
-  React.useEffect(() => {
-    if(name === undefined) {
-      const newName = window.prompt('Enter your name');
-      setName(newName);
-    }
-  }, []);
 
   return (
     <div>
       <h1>UseEffectPage</h1>
-      { name && (
-        <p>Hello {name}</p>
-      )}
       <article>
         <h2>Todos</h2>
-        <MyButton onClick={() => setPage(1)}>1</MyButton>
-        <MyButton onClick={() => setPage(2)}>2</MyButton>
-        <MyButton onClick={() => setPage(3)}>3</MyButton>
-        <MyButton onClick={() => setPage(4)}>4</MyButton>
-        <MyButton onClick={() => setPage(5)}>5</MyButton>
+        {pageNumbers.map(pageNumber => (
+          <Button key={pageNumber} onClick={() => setPage(pageNumber)} isActive={pageNumber === page}>{pageNumber}</Button>
+
+        ))}
+    
         {isLoading ? <p>Loading...</p> : (
           <ul>
             {todos.map(todo => (

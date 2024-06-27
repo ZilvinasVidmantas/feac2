@@ -1,5 +1,5 @@
 import React from 'react'
-import { MyButton } from '../../components/ux/my-button';
+import { Button } from '../../components/ux/button';
 
 export const UseStatePage = () => {
   const [count, setCount] = React.useState(0);
@@ -42,14 +42,14 @@ export const UseStatePage = () => {
       <h1>My component</h1>
       <article>
         <h2>Count</h2>
-        <MyButton onClick={increaseCount}>increase</MyButton>
-        <MyButton onClick={decreaseCount}>decrease</MyButton>
+        <Button onClick={increaseCount}>increase</Button>
+        <Button onClick={decreaseCount}>decrease</Button>
         <p>Count: {count}</p>
       </article>
       <article>
         <h2>Age</h2>
-        <MyButton onClick={increaseAge}>increase</MyButton>
-        <MyButton onClick={decreaseAge}>decrease</MyButton>
+        <Button onClick={increaseAge}>increase</Button>
+        <Button onClick={decreaseAge}>decrease</Button>
         <p>Age: {age}</p>
       </article>
 
