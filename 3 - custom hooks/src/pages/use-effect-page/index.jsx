@@ -1,5 +1,5 @@
 import React from 'react';
-import { MyButton } from '../../components/my-button';
+import { MyButton } from '../../components/ux/my-button';
 import { useLocalStorage } from '../../hooks/use-local-storage';
 import { useFetch } from '../../hooks/use-fetch';
 

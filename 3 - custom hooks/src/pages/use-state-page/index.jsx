@@ -1,5 +1,5 @@
 import React from 'react'
-import { MyButton } from '../../components/my-button';
+import { MyButton } from '../../components/ux/my-button';
 
 export const UseStatePage = () => {
   const [count, setCount] = React.useState(0);
