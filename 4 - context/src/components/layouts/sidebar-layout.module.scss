@@ -1,0 +1,31 @@
+.layout {
+  display: grid;
+  grid-template-columns: 250px auto;
+}
+
+.sidebar {
+  height: 100vh;
+  background-color: $secondary;
+  color: #fff;
+  padding-top: 50px;
+  padding: 1rem;
+}
+
+.content {
+  padding: 1rem
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.link {
+  color: white;
+  text-decoration: none;
+  &:hover {
+    color: #ccc;
+  }
+}
+.active {
+  color: $primary;
+}

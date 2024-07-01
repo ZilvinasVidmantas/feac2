@@ -1,23 +1,32 @@
 import { routes } from '../../navigation/router'
-import { Link, Outlet } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
+import styles from './sidebar-layout.module.scss'
+import clsx from 'clsx';
+import { Navbar } from './navbar';
 
 const SidebarLayout = () => {
   return (
-    <div>
-      <aside>
+    <div className={styles.layout}>
+      <aside className={styles.sidebar}>
         <nav>
           <ul>
-            {Object.entries(routes).map(([name, url]) => (
+            {Object.values(routes).map(({ name, link }) => (
               <li key={name}>
-                <Link to={url}>{name}</Link>
+                <NavLink to={link} className={({ isActive }) => clsx(
+                  styles.link,
+                  isActive && styles.active
+                )} >{name}</NavLink>
               </li>
             ))}
           </ul>
         </nav>
       </aside>
-      <main>
-        <Outlet />
-      </main>
+      <div>
+        <Navbar />
+        <main className={styles.content}>
+          <Outlet />
+        </main>
+      </div>
     </div>
   )
 }

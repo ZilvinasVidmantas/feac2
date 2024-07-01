@@ -5,29 +5,42 @@ import { UseStatePage } from "../pages/use-state-page";
 import SidebarLayout from "../components/layouts/sidebar-layout";
 
 export const routes = {
-  homePage: "/",
-  useEffectPage: "/use-effect",
-  useStatePage: "/use-state",
-  lifeCyclePage: "/life-cycle"
+  homePage: {
+    link: "/",
+    name: "Home",
+  },
+  useEffectPage: {
+   link:  "/use-effect",
+   name: "Use effect",
+  },
+  useStatePage: {
+    link: "/use-state",
+    name: "Use state",
+  },
+  lifeCyclePage: {
+   link: "/life-cycle",
+   name: "Lifecycle",
+  }
 };
+
 
 const router = createBrowserRouter([
   {
     path: "/", element: <SidebarLayout />, children: [
       {
-        path: routes.homePage,
+        path: routes.homePage.link,
         element: <Navigate to={routes.useStatePage} />,
       },
       {
-        path: routes.lifeCyclePage,
+        path: routes.lifeCyclePage.link,
         element: <LifeCyclePage />,
       },
       {
-        path: routes.useEffectPage,
+        path: routes.useEffectPage.link,
         element: <UseEffectPage />,
       },
       {
-        path: routes.useStatePage,
+        path: routes.useStatePage.link,
         element: <UseStatePage />,
       },
     ]
