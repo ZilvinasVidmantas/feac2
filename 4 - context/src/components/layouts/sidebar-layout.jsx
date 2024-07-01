@@ -1,4 +1,4 @@
-import { routes } from '../../navigation/router'
+import { navRoutes } from '../../navigation/router'
 import { NavLink, Outlet } from 'react-router-dom'
 import styles from './sidebar-layout.module.scss'
 import clsx from 'clsx';
@@ -10,7 +10,7 @@ const SidebarLayout = () => {
       <aside className={styles.sidebar}>
         <nav>
           <ul>
-            {Object.values(routes).map(({ name, link }) => (
+            {Object.values(navRoutes).map(({ name, link }) => (
               <li key={name}>
                 <NavLink to={link} className={({ isActive }) => clsx(
                   styles.link,

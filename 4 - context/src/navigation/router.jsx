@@ -3,8 +3,9 @@ import { LifeCyclePage } from "../pages/life-cycle-page";
 import { UseEffectPage } from "../pages/use-effect-page";
 import { UseStatePage } from "../pages/use-state-page";
 import SidebarLayout from "../components/layouts/sidebar-layout";
+import { LoginPage } from "../pages/auth/login-page";
 
-export const routes = {
+export const navRoutes = {
   homePage: {
     link: "/",
     name: "Home",
@@ -23,24 +24,43 @@ export const routes = {
   }
 };
 
+export const authRoutes = {
+  login: {
+    link: "/login",
+    name: "Login",
+  },
+  // register: {
+  //   link: "/register",
+  //   name: "Register",
+  // },
+};
+
 
 const router = createBrowserRouter([
   {
     path: "/", element: <SidebarLayout />, children: [
       {
-        path: routes.homePage.link,
-        element: <Navigate to={routes.useStatePage} />,
+        path: authRoutes.login.link,
+        element: <LoginPage />,
+      },
+      // {
+      //   path: authRoutes.register.link,
+      //   element: <Navigate to={navRoutes.useStatePage} />,
+      // },
+      {
+        path: navRoutes.homePage.link,
+        element: <Navigate to={navRoutes.useStatePage} />,
       },
       {
-        path: routes.lifeCyclePage.link,
+        path: navRoutes.lifeCyclePage.link,
         element: <LifeCyclePage />,
       },
       {
-        path: routes.useEffectPage.link,
+        path: navRoutes.useEffectPage.link,
         element: <UseEffectPage />,
       },
       {
-        path: routes.useStatePage.link,
+        path: navRoutes.useStatePage.link,
         element: <UseStatePage />,
       },
     ]
