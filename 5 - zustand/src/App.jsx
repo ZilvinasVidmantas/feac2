@@ -1,11 +1,11 @@
 import { Routes } from "./navigation/router";
-import { AuthProvider } from "./store/auth/index";
+// import { AuthProvider } from "./store/auth/index";
 
 export const App = () => {
 
   return (
-    <AuthProvider>
+    // <AuthProvider>
       <Routes />
-    </AuthProvider>
+    // </AuthProvider>
   )
 }

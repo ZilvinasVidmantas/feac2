@@ -1,6 +1,6 @@
-import { Button } from '../../components/ux/button';
-import { useFetch } from '../../hooks/use-fetch';
-import { useUrlState } from '../../hooks/use-url-state';
+import { Button } from "src/components/ux/button";
+import { useFetch } from "src/hooks/use-fetch";
+import { useUrlState } from "src/hooks/use-url-state";
 
 
 const  pageNumbers = [1, 2, 3, 4, 5];
