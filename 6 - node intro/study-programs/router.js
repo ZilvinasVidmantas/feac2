@@ -1,8 +1,53 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const studyProgramsDb = require('./study-programs-data');
 
 const ROUTER_API_BASE = '/api/study-programs';
 const studyProgramsRouter = express.Router();
+
+studyProgramsRouter.use(bodyParser.json());
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     StudyProgram:
+ *       type: object
+ *       required:
+ *         - name
+ *         - price
+ *         - durationInHours
+ *       properties:
+ *         id:
+ *           type: string
+ *         name:
+ *           type: string
+ *         price:
+ *           type: number
+ *         durationInHours:
+ *           type: number *     
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     StudyProgramBody:
+ *       type: object
+ *       required:
+ *         - name
+ *         - price
+ *         - durationInHours
+ *       properties:
+ *         name:
+ *           type: string
+ *         price:
+ *           type: number
+ *         durationInHours:
+ *           type: number *     
+ */
+
+
 
 /**
  * @swagger
@@ -12,6 +57,12 @@ const studyProgramsRouter = express.Router();
  *     responses:
  *       200:
  *         description: Success
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/StudyProgram'
  */
 studyProgramsRouter.get(ROUTER_API_BASE, (req, res) => {
   res.status(200).json(studyProgramsDb);
@@ -23,18 +74,23 @@ studyProgramsRouter.get(ROUTER_API_BASE, (req, res) => {
  *   get:
  *     description: Get a specific study program
  *     parameters:
- *       - name: id
- *         description: ID of the study program
- *         in: path
+ *       - in: path
+ *         name: id
  *         required: true
- *         type: string
+ *         description: ID of the study program
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: Success
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/StudyProgram'
  *       404:
  *         description: Not Found
  */
-studyProgramsRouter.get(ROUTER_API_BASE + '/:id', (req, res) => {
+studyProgramsRouter.get(`${ROUTER_API_BASE}/:id`, (req, res) => {
   const studyProgram = studyProgramsDb.find(c => c.id === req.params.id);
   if (!studyProgram) return res.status(404).json({
     error: 'The study program with the given ID was not found.',
@@ -47,26 +103,33 @@ studyProgramsRouter.get(ROUTER_API_BASE + '/:id', (req, res) => {
  * /api/study-programs:
  *   post:
  *     description: Add a new study program
- *     parameters:
- *       - name: studyProgram
- *         description: Study program object
- *         in: body
- *         required: true
- *         schema:
- *           $ref: '#/definitions/StudyProgram'
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/StudyProgramBody'
  *     responses:
  *       200:
  *         description: Success
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/StudyProgram'
  */
 studyProgramsRouter.post(ROUTER_API_BASE, (req, res) => {
+  const { name, price, durationInHours } = req.body;
+  if (!name || typeof price !== 'number' || typeof durationInHours !== 'number') {
+    return res.status(400).json({ error: 'Invalid input' });
+  }
   const studyProgram = {
-    id: new Date().getMilliseconds().toString(),
-    name: req.body.name,
-    price: req.body.price,
-    durationInHours: req.body.durationInHours
+    id: Date.now.toString(),
+    name,
+    price,
+    durationInHours
   };
   studyProgramsDb.push(studyProgram);
-  res.json(studyProgram);
+  res.status(200).json(studyProgram);
 });
 
 /**
@@ -75,24 +138,29 @@ studyProgramsRouter.post(ROUTER_API_BASE, (req, res) => {
  *   put:
  *     description: Update a study program
  *     parameters:
- *       - name: id
+ *       - in: path
+ *         name: id
+ *         required: true
  *         description: ID of the study program
- *         in: path
- *         required: true
- *         type: string
- *       - name: studyProgram
- *         description: Study program object
- *         in: body
- *         required: true
  *         schema:
- *           $ref: '#/definitions/StudyProgram'
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/StudyProgramBody'
  *     responses:
  *       200:
  *         description: Success
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/StudyProgram'
  *       404:
  *         description: Not Found
  */
-studyProgramsRouter.put(ROUTER_API_BASE + '/:id', (req, res) => {
+studyProgramsRouter.put(`${ROUTER_API_BASE}/:id`, (req, res) => {
   const studyProgram = studyProgramsDb.find(c => c.id === req.params.id);
   if (!studyProgram) return res.status(404).json({
     error: 'The study program with the given ID was not found.',
@@ -102,7 +170,7 @@ studyProgramsRouter.put(ROUTER_API_BASE + '/:id', (req, res) => {
   studyProgram.price = req.body.price;
   studyProgram.durationInHours = req.body.durationInHours;
 
-  res.json(studyProgram);
+  res.status(200).json(studyProgram);
 });
 
 /**
@@ -111,18 +179,23 @@ studyProgramsRouter.put(ROUTER_API_BASE + '/:id', (req, res) => {
  *   delete:
  *     description: Delete a study program
  *     parameters:
- *       - name: id
- *         description: ID of the study program
- *         in: path
+ *       - in: path
+ *         name: id
  *         required: true
- *         type: string
+ *         description: ID of the study program
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: Success
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/StudyProgram'
  *       404:
  *         description: Not Found
  */
-studyProgramsRouter.delete('/:id', (req, res) => {
+studyProgramsRouter.delete(`${ROUTER_API_BASE}/:id`, (req, res) => {
   const studyProgram = studyProgramsDb.find(c => c.id === req.params.id);
   if (!studyProgram) return res.status(404).json({
     error: 'The study program with the given ID was not found.',
@@ -131,7 +204,7 @@ studyProgramsRouter.delete('/:id', (req, res) => {
   const index = studyProgramsDb.indexOf(studyProgram);
   studyProgramsDb.splice(index, 1);
 
-  res.json(studyProgram);
+  res.status(200).json(studyProgram);
 });
 
 module.exports = studyProgramsRouter;
