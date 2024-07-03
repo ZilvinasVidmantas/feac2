@@ -105,9 +105,6 @@ studyProgramsRouter.put(ROUTER_API_BASE + '/:id', (req, res) => {
   res.json(studyProgram);
 });
 
-// The PATCH method is not implemented, so no JSDoc comment is added for it
-studyProgramsRouter.patch(ROUTER_API_BASE + '/:id')
-
 /**
  * @swagger
  * /api/study-programs/{id}:
