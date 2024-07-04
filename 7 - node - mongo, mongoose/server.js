@@ -5,6 +5,9 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const studyProgramsRouter = require('./study-programs/router');
 const mongoose = require('mongoose');
+require('dotenv').config();
+
+process.env
 
 const server = express();
 const swaggerOptions = {
@@ -25,7 +28,7 @@ server.use(morgan('common'));
 server.use(cors());
 server.use(studyProgramsRouter);
 
-mongoose.connect('mongodb+srv://admin:Vilnius123@cluster0.wqmfmet.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect('')
   .then(() => {
     console.log('Connected to MongoDB');
     server.listen(5005, () => {
