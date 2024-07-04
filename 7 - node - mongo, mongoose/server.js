@@ -7,8 +7,6 @@ const studyProgramsRouter = require('./study-programs/router');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-process.env
-
 const server = express();
 const swaggerOptions = {
   definition: {
@@ -18,7 +16,7 @@ const swaggerOptions = {
       version: '1.0.0',
     },
   },
-  apis: ['./study-programs/router.js'],
+  apis: ['./study-programs/**/*.js'],
 };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
@@ -28,7 +26,7 @@ server.use(morgan('common'));
 server.use(cors());
 server.use(studyProgramsRouter);
 
-mongoose.connect('')
+mongoose.connect(process.env.DB_CONNECTION)
   .then(() => {
     console.log('Connected to MongoDB');
     server.listen(5005, () => {
