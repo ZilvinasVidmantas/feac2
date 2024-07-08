@@ -1,7 +1,7 @@
 Būtina autentifikacijos įgalinimui
-* Parisiusti biliotekas
-* Apsirašyti .env kintamuosius
-* Išskaidyti server.js funkcionalumą, laikantis SRP 
+* Parisiusti biliotekas - DONE
+* Apsirašyti .env kintamuosius - DONE
+* Išskaidyti server.js funkcionalumą, laikantis SRP - DONE
 * Sukurti vartotojo schemą
 * sukurti prisijungimo ir registracijos funkcijas
 * sukurti middleware, kuris apsaugos mano maršrutus
