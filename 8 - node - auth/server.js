@@ -1,9 +1,11 @@
 const express = require('express')
-const config = require('./config/config-env-variables');
-const configSwagger = require('./config/config-swagger');
-const configMiddlewares = require('./config/config-miidlewares');
-const configRouter = require('./config/config-routes');
-const connectToDb = require('./libs/connect-to-db');
+const {
+  config,
+  configSwagger,
+  configMiddlewares,
+  configRouter,
+  connectToDb
+} = require('./config');
 
 const server = express();
 configSwagger(server);
