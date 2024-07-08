@@ -1,0 +1,16 @@
+Būtina autentifikacijos įgalinimui
+* Parisiusti biliotekas
+* Apsirašyti .env kintamuosius
+* Išskaidyti server.js funkcionalumą, laikantis SRP 
+* Sukurti vartotojo schemą
+* sukurti prisijungimo ir registracijos funkcijas
+* sukurti middleware, kuris apsaugos mano maršrutus
+* pritaikyti middleware maršrutam, kuriuos turėtų pasiekti tik prisijungę vartotojai
+
+Papildomai:
+* aprašyti savo API routus su swagger dokumentacija
+* Įgalinti prijungimą per swagger API docs
+* Peržiūrėti kodą, kaip jį padaryti labiau
+  * skaitomą
+  * perpanaudojamą
+  * konfiguruojamą
