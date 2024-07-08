@@ -5,6 +5,7 @@ const StudyProgramModel = require("../study-program-model");
  * /api/study-programs/{id}:
  *   get:
  *     description: Get a specific study program
+ *     tags: [StudyPrograms]
  *     parameters:
  *       - in: path
  *         name: id

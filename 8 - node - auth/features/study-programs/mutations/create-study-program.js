@@ -5,6 +5,7 @@ const StudyProgramModel = require("../study-program-model");
  * /api/study-programs:
  *   post:
  *     description: Add a new study program
+ *     tags: [StudyPrograms]
  *     requestBody:
  *       required: true
  *       content:

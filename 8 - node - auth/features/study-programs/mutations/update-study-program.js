@@ -4,6 +4,7 @@ const StudyProgramModel = require("../study-program-model");
  * @swagger
  * /api/study-programs/{id}:
  *   put:
+ *     tags: [StudyPrograms]
  *     description: Update a study program
  *     parameters:
  *       - in: path
