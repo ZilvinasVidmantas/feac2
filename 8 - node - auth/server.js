@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const cors = require('cors')
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-const studyProgramsRouter = require('./study-programs/router');
+const studyProgramsRouter = require('./features/study-programs/router');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -15,8 +15,25 @@ const swaggerOptions = {
       title: 'Hello World',
       version: '1.0.0',
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
+    security: [{
+      bearerAuth: []
+    }],
+    servers: [
+      {
+        url: 'http://localhost:5005',
+      },
+    ],
   },
-  apis: ['./study-programs/**/*.js'],
+  apis: ['./features/**/*.js'],
 };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
