@@ -2,7 +2,7 @@ Būtina autentifikacijos įgalinimui
 * Parisiusti biliotekas - DONE
 * Apsirašyti .env kintamuosius - DONE
 * Išskaidyti server.js funkcionalumą, laikantis SRP - DONE
-* Sukurti vartotojo schemą
+* Sukurti vartotojo schemą - DONE
 * sukurti prisijungimo ir registracijos funkcijas
 * sukurti middleware, kuris apsaugos mano maršrutus
 * pritaikyti middleware maršrutam, kuriuos turėtų pasiekti tik prisijungę vartotojai
