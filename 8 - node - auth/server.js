@@ -1,6 +1,6 @@
 const express = require('express')
 const {
-  config,
+  envVariables,
   configSwagger,
   configMiddlewares,
   configRouter,
@@ -13,7 +13,7 @@ configMiddlewares(server);
 configRouter(server);
 
 connectToDb(() => {
-  server.listen(config.server.port, () => {
-    console.log(`Server is running on http://localhost:${config.server.port}/api-docs`);
+  server.listen(envVariables.server.port, () => {
+    console.log(`Server is running on http://localhost:${envVariables.server.port}/api-docs`);
   });
 });

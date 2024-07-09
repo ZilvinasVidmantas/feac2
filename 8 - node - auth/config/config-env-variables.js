@@ -26,7 +26,7 @@ if(missingEnvVariables.length> 0) {
   throw new Error('Variables are not provided in .env file: \n' +missingVariableNames + '\n');
 }
 
-const config = {
+const envVariables = {
    server: {
     port: SERVER_PORT,
    },
@@ -39,4 +39,4 @@ const config = {
    },
 }
 
-module.exports = config;
+module.exports = envVariables;

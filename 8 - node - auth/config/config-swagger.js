@@ -1,6 +1,6 @@
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-const config = require('./config-env-variables');
+const envVariables = require('./config-env-variables');
 
 const swaggerOptions = {
   definition: {
@@ -23,7 +23,7 @@ const swaggerOptions = {
     }],
     servers: [
       {
-        url: 'http://localhost:' + config.server.port,
+        url: 'http://localhost:' + envVariables.server.port,
       },
     ],
   },
