@@ -4,13 +4,13 @@ Būtina autentifikacijos įgalinimui
 * Išskaidyti server.js funkcionalumą, laikantis SRP - DONE
 * Sukurti vartotojo schemą - DONE
 * sukurti prisijungimo ir registracijos funkcijas - DONE
-* sukurti middleware, kuris apsaugos mano maršrutus
-* pritaikyti middleware maršrutam, kuriuos turėtų pasiekti tik prisijungę vartotojai
+* sukurti middleware, kuris apsaugos mano maršrutus - DONE
+* pritaikyti middleware maršrutam, kuriuos turėtų pasiekti tik prisijungę vartotojai - DONE
 
 Papildomai:
-* aprašyti savo API routus su swagger dokumentacija
-* Įgalinti prijungimą per swagger API docs
-* Peržiūrėti kodą, kaip jį padaryti labiau
+* aprašyti savo API routus su swagger dokumentacija - DONE
+* Įgalinti prijungimą per swagger API docs - DONE
+* Peržiūrėti kodą, kaip jį padaryti labiau 
   * skaitomą
   * perpanaudojamą
   * konfiguruojamą
