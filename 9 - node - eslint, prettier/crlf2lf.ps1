@@ -12,3 +12,4 @@ foreach ($file in $files) {
     # Write the updated content back to the file
     Set-Content -Path $file.FullName -Value $contentFixed
 }
+
