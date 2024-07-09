@@ -17,26 +17,26 @@ const requiredEnvVariables = {
 const missingEnvVariables = [];
 Object.entries(requiredEnvVariables).forEach(([key, value]) => {
   if(!value) {
-    missingEnvVariables.push(key)
+    missingEnvVariables.push(key);
   }
 });
 
 if(missingEnvVariables.length> 0) {
   var missingVariableNames = missingEnvVariables.join('\t\n');
-  throw new Error('Variables are not provided in .env file: \n' +missingVariableNames + '\n');
+  throw new Error(`Variables are not provided in .env file: \n${ missingVariableNames  }\n`);
 }
 
 const envVariables = {
-   server: {
+  server: {
     port: SERVER_PORT,
-   },
-   jwt: {
+  },
+  jwt: {
     secret: TOKEN_SECRET,
     expiration: TOKEN_EXPIRATION,
-   },
-   db: {
+  },
+  db: {
     connection: DB_CONNECTION,
-   },
-}
+  },
+};
 
 module.exports = envVariables;

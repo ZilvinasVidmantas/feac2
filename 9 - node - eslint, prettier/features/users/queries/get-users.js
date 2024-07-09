@@ -1,4 +1,4 @@
-const UserModel = require("../user-model");
+const UserModel = require('../user-model');
 
 /**
  * @swagger
@@ -17,9 +17,9 @@ const UserModel = require("../user-model");
  *                 $ref: '#/components/schemas/User'
  */
 const getUsers = async (req, res) => {
-  const studyPrograms = await UserModel.find()
+  const studyPrograms = await UserModel.find();
   
   res.status(200).json(studyPrograms);
-}
+};
 
 module.exports = getUsers;

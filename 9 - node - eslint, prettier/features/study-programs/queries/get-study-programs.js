@@ -1,4 +1,4 @@
-const StudyProgramModel = require("../study-program-model");
+const StudyProgramModel = require('../study-program-model');
 
 /**
  * @swagger
@@ -17,9 +17,9 @@ const StudyProgramModel = require("../study-program-model");
  *                 $ref: '#/components/schemas/StudyProgram'
  */
 const getStudyPrograms = async (req, res) => {
-  const studyPrograms = await StudyProgramModel.find()
+  const studyPrograms = await StudyProgramModel.find();
   
   res.status(200).json(studyPrograms);
-}
+};
 
 module.exports = getStudyPrograms;

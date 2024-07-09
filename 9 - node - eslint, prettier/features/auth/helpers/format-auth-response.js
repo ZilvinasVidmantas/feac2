@@ -1,4 +1,4 @@
-const generateToken = require("./generate-token");
+const generateToken = require('./generate-token');
 
 /**
  * @swagger
@@ -44,6 +44,6 @@ const formatAuthResponse = (userDoc) => {
       age: userDoc.age,
     },
   };
-}
+};
 
 module.exports = formatAuthResponse;

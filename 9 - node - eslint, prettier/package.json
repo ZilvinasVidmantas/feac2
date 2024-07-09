@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "eslint:fix": "eslint --fix."
   },
   "author": "Zilvinas Vidmantas",
   "license": "ISC",
@@ -20,6 +21,9 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.6.0",
+    "eslint": "^9.6.0",
+    "globals": "^15.8.0",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.4"
   }

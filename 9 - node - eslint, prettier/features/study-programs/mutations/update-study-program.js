@@ -1,4 +1,4 @@
-const StudyProgramModel = require("../study-program-model");
+const StudyProgramModel = require('../study-program-model');
 
 /**
  * @swagger
@@ -42,9 +42,9 @@ const updateStudyProgram = async (req, res) => {
     await studyProgram.save();
     res.status(200).json(studyProgram);
   }
-  catch (err) {
+  catch {
     return res.status(400).json({ error: 'Invalid input' });
   }
-}
+};
 
-module.exports = updateStudyProgram
+module.exports = updateStudyProgram;

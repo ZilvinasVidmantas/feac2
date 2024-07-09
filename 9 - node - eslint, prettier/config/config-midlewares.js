@@ -6,6 +6,6 @@ const configMiddlewares = (server) => {
   server.use(express.json());
   server.use(morgan('common'));
   server.use(cors());
-}
+};
 
 module.exports = configMiddlewares;

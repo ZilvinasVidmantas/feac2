@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
-const envVariables = require("../../../config/config-env-variables");
+const jwt = require('jsonwebtoken');
+const envVariables = require('../../../config/config-env-variables');
 
 const generateToken = (payload) => {
   const token = jwt.sign(payload, envVariables.jwt.secret, {
@@ -7,6 +7,6 @@ const generateToken = (payload) => {
   });
 
   return token;
-}
+};
 
 module.exports = generateToken;

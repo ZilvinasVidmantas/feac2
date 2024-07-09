@@ -1,5 +1,5 @@
-const UserModel = require("../../users/user-model");
-const formatAuthResponse = require("../helpers/format-auth-response");
+const UserModel = require('../../users/user-model');
+const formatAuthResponse = require('../helpers/format-auth-response');
 
 /**
  * @swagger
@@ -50,7 +50,7 @@ const login = async (req, res) => {
   const { email, password } = req.body;
   const newUser = await UserModel.findOne({ email });
   if (!newUser || !(newUser.isCorrectPassword(password))) {
-    return res.status(401).json({ message: "Incorrect email or password" });
+    return res.status(401).json({ message: 'Incorrect email or password' });
   }
   return res.status(200).json(formatAuthResponse(newUser));
 };

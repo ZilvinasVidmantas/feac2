@@ -1,4 +1,4 @@
-const StudyProgramModel = require("../study-program-model");
+const StudyProgramModel = require('../study-program-model');
 
 /**
  * @swagger
@@ -29,6 +29,6 @@ const getStudyProgram = async (req, res) => {
     error: 'The study program with the given ID was not found.',
   });
   res.json(studyProgram);
-}
+};
 
 module.exports  = getStudyProgram;

@@ -1,4 +1,4 @@
-const StudyProgramModel = require("../study-program-model");
+const StudyProgramModel = require('../study-program-model');
 
 /**
  * @swagger
@@ -32,6 +32,6 @@ const createStudyProgram = async (req, res) => {
   };
   const newStyduProgram = await StudyProgramModel.create(studyProgramProps);
   res.status(200).json(newStyduProgram);
-}
+};
 
 module.exports = createStudyProgram;

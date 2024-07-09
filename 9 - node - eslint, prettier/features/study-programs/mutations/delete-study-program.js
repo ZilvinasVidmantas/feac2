@@ -1,4 +1,4 @@
-const StudyProgramModel = require("../study-program-model");
+const StudyProgramModel = require('../study-program-model');
 
 /**
  * @swagger
@@ -32,6 +32,6 @@ const deleteStudyProgram = async (req, res) => {
   await StudyProgramModel.findByIdAndDelete(req.params.id);
 
   res.status(200).json(studyProgram);
-}
+};
 
 module.exports = deleteStudyProgram;

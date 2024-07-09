@@ -23,7 +23,7 @@ const swaggerOptions = {
     }],
     servers: [
       {
-        url: 'http://localhost:' + envVariables.server.port,
+        url: `http://localhost:${  envVariables.server.port}`,
       },
     ],
   },
@@ -33,6 +33,6 @@ const swaggerOptions = {
 const configSwagger = (server) => {
   const swaggerDocs = swaggerJsDoc(swaggerOptions);
   server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-}
+};
 
 module.exports = configSwagger;

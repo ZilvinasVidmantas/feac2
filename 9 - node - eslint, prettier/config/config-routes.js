@@ -6,6 +6,6 @@ const configRoutes = (server) => {
   server.use(authRouter);
   server.use(studyProgramsRouter);
   server.use(usersRouter);
-}
+};
 
 module.exports = configRoutes;
