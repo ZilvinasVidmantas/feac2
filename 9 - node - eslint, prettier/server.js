@@ -4,7 +4,7 @@ const {
   configSwagger,
   configMiddlewares,
   configRouter,
-  connectToDb
+  connectToDb,
 } = require('./config');
 
 const server = express();

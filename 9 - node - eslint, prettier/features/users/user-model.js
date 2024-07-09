@@ -55,27 +55,26 @@ const userSchema = new mongoose.Schema(
   {
     timestamps: true,
     versionKey: false,
-  }
+  },
 );
 
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function hashPasswordOnSave(next) {
   if (this.isModified('password')) {
     this.password = await bcrypt.hash(this.password, 10);
   }
   next();
 });
 
-userSchema.methods.isCorrectPassword = function (password) {
+userSchema.methods.isCorrectPassword = function isCorrectPassword(password) {
   const isValid = bcrypt.compareSync(password, this.password);
   return isValid;
 };
 
 userSchema.set('toJSON', {
-  transform: (doc, ret) => {
-    ret.id = ret._id;
-    delete ret._id;
-    return ret;
-  }
+  transform: (doc, { _id, ...props }) => ({
+    id: _id,
+    ...props,
+  }),
 });
 
 const UserModel = mongoose.model('User', userSchema);

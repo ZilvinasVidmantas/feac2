@@ -18,7 +18,7 @@ const mongoose = require('mongoose');
  *         price:
  *           type: number
  *         durationInHours:
- *           type: number *     
+ *           type: number *
  */
 
 /**
@@ -37,22 +37,26 @@ const mongoose = require('mongoose');
  *         price:
  *           type: number
  *         durationInHours:
- *           type: number *     
+ *           type: number *
  */
 
-const studyProgramSchema = new mongoose.Schema({
-  name: String,
-  price: Number,
-  durationInHours: Number,
-});
+const studyProgramSchema = new mongoose.Schema(
+  {
+    name: String,
+    price: Number,
+    durationInHours: Number,
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+  },
+);
 
 studyProgramSchema.set('toJSON', {
-  transform: (doc, ret) => {
-    ret.id = ret._id;
-    delete ret._id;
-    delete ret.__v;
-    return ret;
-  }
+  transform: (doc, { _id, ...props }) => ({
+    ...props,
+    id: _id,
+  }),
 });
 
 const StudyProgramModel = mongoose.model('StudyProgram', studyProgramSchema);

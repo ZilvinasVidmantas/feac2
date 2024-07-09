@@ -16,14 +16,14 @@ const requiredEnvVariables = {
 
 const missingEnvVariables = [];
 Object.entries(requiredEnvVariables).forEach(([key, value]) => {
-  if(!value) {
+  if (!value) {
     missingEnvVariables.push(key);
   }
 });
 
-if(missingEnvVariables.length> 0) {
-  var missingVariableNames = missingEnvVariables.join('\t\n');
-  throw new Error(`Variables are not provided in .env file: \n${ missingVariableNames  }\n`);
+if (missingEnvVariables.length > 0) {
+  const missingVariableNames = missingEnvVariables.join('\t\n');
+  throw new Error(`Variables are not provided in .env file: \n${missingVariableNames}\n`);
 }
 
 const envVariables = {

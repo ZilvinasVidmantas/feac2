@@ -20,18 +20,19 @@ const StudyProgramModel = require('../study-program-model');
  *             schema:
  *               $ref: '#/components/schemas/StudyProgram'
  */
-const createStudyProgram = async (req, res) => {
+async function createStudyProgram(req, res) {
   const { name, price, durationInHours } = req.body;
   if (!name || typeof price !== 'number' || typeof durationInHours !== 'number') {
-    return res.status(400).json({ error: 'Invalid input' });
+    res.status(400).json({ error: 'Invalid input' });
+    return;
   }
   const studyProgramProps = {
     name,
     price,
-    durationInHours
+    durationInHours,
   };
   const newStyduProgram = await StudyProgramModel.create(studyProgramProps);
   res.status(200).json(newStyduProgram);
-};
+}
 
 module.exports = createStudyProgram;

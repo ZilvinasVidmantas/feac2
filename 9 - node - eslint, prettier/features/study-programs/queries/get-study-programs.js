@@ -18,7 +18,7 @@ const StudyProgramModel = require('../study-program-model');
  */
 const getStudyPrograms = async (req, res) => {
   const studyPrograms = await StudyProgramModel.find();
-  
+
   res.status(200).json(studyPrograms);
 };
 

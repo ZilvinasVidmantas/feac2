@@ -29,11 +29,14 @@ const StudyProgramModel = require('../study-program-model');
  *       404:
  *         description: Not Found
  */
-const updateStudyProgram = async (req, res) => {
+async function updateStudyProgram(req, res) {
   const studyProgram = await StudyProgramModel.findById(req.params.id);
-  if (!studyProgram) return res.status(404).json({
-    error: 'The study program with the given ID was not found.',
-  });
+  if (!studyProgram) {
+    res.status(404).json({
+      error: 'The study program with the given ID was not found.',
+    });
+    return;
+  }
 
   studyProgram.name = req.body.name;
   studyProgram.price = req.body.price;
@@ -41,10 +44,9 @@ const updateStudyProgram = async (req, res) => {
   try {
     await studyProgram.save();
     res.status(200).json(studyProgram);
+  } catch {
+    res.status(400).json({ error: 'Invalid input' });
   }
-  catch {
-    return res.status(400).json({ error: 'Invalid input' });
-  }
-};
+}
 
 module.exports = updateStudyProgram;

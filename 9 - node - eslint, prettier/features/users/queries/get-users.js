@@ -18,7 +18,7 @@ const UserModel = require('../user-model');
  */
 const getUsers = async (req, res) => {
   const studyPrograms = await UserModel.find();
-  
+
   res.status(200).json(studyPrograms);
 };
 

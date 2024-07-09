@@ -23,15 +23,18 @@ const StudyProgramModel = require('../study-program-model');
  *       404:
  *         description: Not Found
  */
-const deleteStudyProgram = async (req, res) => {
+async function deleteStudyProgram(req, res) {
   const studyProgram = await StudyProgramModel.findById(req.params.id);
-  if (!studyProgram) return res.status(404).json({
-    error: 'The study program with the given ID was not found.',
-  });
+  if (!studyProgram) {
+    res.status(404).json({
+      error: 'The study program with the given ID was not found.',
+    });
+    return;
+  }
 
   await StudyProgramModel.findByIdAndDelete(req.params.id);
 
   res.status(200).json(studyProgram);
-};
+}
 
 module.exports = deleteStudyProgram;

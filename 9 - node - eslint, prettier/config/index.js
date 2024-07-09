@@ -9,5 +9,5 @@ module.exports = {
   configSwagger,
   configMiddlewares,
   configRouter,
-  connectToDb
+  connectToDb,
 };

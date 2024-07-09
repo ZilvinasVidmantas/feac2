@@ -19,11 +19,11 @@ const swaggerOptions = {
       },
     },
     security: [{
-      bearerAuth: []
+      bearerAuth: [],
     }],
     servers: [
       {
-        url: `http://localhost:${  envVariables.server.port}`,
+        url: `http://localhost:${envVariables.server.port}`,
       },
     ],
   },

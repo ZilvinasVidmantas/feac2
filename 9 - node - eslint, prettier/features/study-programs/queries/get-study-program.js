@@ -23,12 +23,15 @@ const StudyProgramModel = require('../study-program-model');
  *       404:
  *         description: Not Found
  */
-const getStudyProgram = async (req, res) => {
+async function getStudyProgram(req, res) {
   const studyProgram = await StudyProgramModel.findById(req.params.id);
-  if (!studyProgram) return res.status(404).json({
-    error: 'The study program with the given ID was not found.',
-  });
+  if (!studyProgram) {
+    res.status(404).json({
+      error: 'The study program with the given ID was not found.',
+    });
+    return;
+  }
   res.json(studyProgram);
-};
+}
 
-module.exports  = getStudyProgram;
+module.exports = getStudyProgram;
