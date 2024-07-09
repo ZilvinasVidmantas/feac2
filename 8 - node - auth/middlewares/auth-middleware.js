@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const envVariables = require("../config/config-env-variables");
 
 const authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -10,7 +11,7 @@ const authMiddleware = (req, res, next) => {
 
   const token = authHeader.split(" ")[1];
   try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    const payload = jwt.verify(token, envVariables.jwt.secret);
     req.currentUser = payload;
     next();
   } catch (err) {
