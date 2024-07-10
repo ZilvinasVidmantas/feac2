@@ -35,7 +35,6 @@ export const authRoutes = {
   // },
 };
 
-
 const router = createBrowserRouter([
   {
     path: "/", element: <SidebarLayout />, children: [
@@ -49,7 +48,7 @@ const router = createBrowserRouter([
       // },
       {
         path: navRoutes.homePage.link,
-        element: <Navigate to={navRoutes.useStatePage} />,
+        element: <Navigate to={navRoutes.useStatePage.link} />,
       },
       {
         path: navRoutes.lifeCyclePage.link,

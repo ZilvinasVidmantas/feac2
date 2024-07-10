@@ -1,13 +1,13 @@
 import { Button } from "src/components/ux/button";
 import { useFetch } from "src/hooks/use-fetch";
 import { useUrlState } from "src/hooks/use-url-state";
+import { Todo } from "src/types/todo";
 
-
-const  pageNumbers = [1, 2, 3, 4, 5];
+const  pageNumbers = ['1', '2', '3', '4', '5'];
 
 export const UseEffectPage = () => {
-  const [page, setPage] = useUrlState('page', 1);
-  const [todos, { isLoading }] = useFetch(`https://jsonplaceholder.typicode.com/todos?_page=${page}&_per_page=10`);
+  const [page, setPage] = useUrlState('page', '1');
+  const [todos, { isLoading }] = useFetch<Todo[]>(`https://jsonplaceholder.typicode.com/todos?_page=${page}&_per_page=10`);
 
 
   return (
@@ -22,7 +22,7 @@ export const UseEffectPage = () => {
     
         {isLoading ? <p>Loading...</p> : (
           <ul>
-            {todos.map(todo => (
+            {todos !== undefined && todos.map(todo => (
               <li key={todo.id}>{todo.title}</li>
             ))}
           </ul>

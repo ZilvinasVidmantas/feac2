@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import { Button } from '../../components/ux/button';
 
 export const UseStatePage = () => {
@@ -22,7 +22,7 @@ export const UseStatePage = () => {
     setAge(age - 1);
   }
 
-  const handleNameChange = (event) => {
+  const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value)
   }
 

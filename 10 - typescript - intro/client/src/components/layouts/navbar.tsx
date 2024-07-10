@@ -3,7 +3,7 @@ import { useAuth } from '../../store/auth';
 
 export const Navbar = () => {
   const { user } = useAuth();
-  console.log(user);
+  
   return (
     <div className={styles.navbar}>{
       user !== null ?

@@ -1,9 +1,14 @@
 import React from "react";
 
-export class ClassComponent extends React.Component {
-  constructor() {
+interface ClassComponentProps { }
+
+interface ClassComponentState { 
+  count: number;
+}
+export class ClassComponent extends React.Component<ClassComponentProps, ClassComponentState> {
+  constructor(props = {}) {
     console.log('contructor');
-    super();
+    super(props);
     this.state = {
       count: 0,
     };
