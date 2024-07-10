@@ -7,6 +7,13 @@ interface AuthState {
   login: (email: string, password: string) => Promise<void>;
 }
 
+
+
+
+
+
+
+
 export const useAuth = create<AuthState>((set) => ({
   user: null,
   error: null,
