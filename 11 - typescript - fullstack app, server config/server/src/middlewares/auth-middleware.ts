@@ -1,7 +1,8 @@
-const jwt = require('jsonwebtoken');
-const envVariables = require('../config/config-env-variables');
+import jwt from 'jsonwebtoken';
+import { envVariables } from '../config';
+import { RequestHandler } from 'express';
 
-const authMiddleware = (req, res, next) => {
+const authMiddleware: RequestHandler = (req, res, next ) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
