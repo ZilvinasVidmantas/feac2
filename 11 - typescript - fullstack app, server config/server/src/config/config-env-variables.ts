@@ -1,4 +1,6 @@
-require('dotenv').config();
+import { config } from 'dotenv';
+config();
+
 
 const {
   SERVER_PORT,
@@ -14,7 +16,7 @@ const requiredEnvVariables = {
   TOKEN_EXPIRATION,
 };
 
-const missingEnvVariables = [];
+const missingEnvVariables: string[] = [];
 Object.entries(requiredEnvVariables).forEach(([key, value]) => {
   if (!value) {
     missingEnvVariables.push(key);
@@ -26,7 +28,7 @@ if (missingEnvVariables.length > 0) {
   throw new Error(`Variables are not provided in .env file: \n${missingVariableNames}\n`);
 }
 
-const envVariables = {
+export const envVariables = {
   server: {
     port: SERVER_PORT,
   },
@@ -39,4 +41,3 @@ const envVariables = {
   },
 };
 
-module.exports = envVariables;
