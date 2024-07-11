@@ -1,9 +1,9 @@
-import { User } from '../features/users/types/user';
+import { UserDto } from '../features/users/types/user';
 
 declare global {
   namespace Express {
     interface Request {
-      currentUser?: User;
+      currentUser?: UserDto;
     }
   }
 }

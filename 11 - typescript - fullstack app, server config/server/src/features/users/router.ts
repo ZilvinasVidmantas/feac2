@@ -1,10 +1,10 @@
-const express = require('express');
-const getUsers = require('./queries/get-users');
-const authMiddleware = require('../../middlewares/auth-middleware');
+import express from 'express';
+import { authMiddleware } from '../../middlewares/auth-middleware';
+import { getUsers } from './queries/get-users';
 
 const ROUTER_API_BASE = '/api/users';
-const usersRouter = express.Router();
+export const usersRouter = express.Router();
 
 usersRouter.get(ROUTER_API_BASE, authMiddleware, getUsers);
 
-module.exports = usersRouter;
+

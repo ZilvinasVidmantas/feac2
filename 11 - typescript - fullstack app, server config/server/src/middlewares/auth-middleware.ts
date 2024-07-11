@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { envVariables } from '../config';
 import { RequestHandler } from 'express';
 
-const authMiddleware: RequestHandler = (req, res, next ) => {
+export const authMiddleware: RequestHandler = (req, res, next ) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -20,4 +20,3 @@ const authMiddleware: RequestHandler = (req, res, next ) => {
   }
 };
 
-module.exports = authMiddleware;

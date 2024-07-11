@@ -1,51 +1,25 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs'
 
-/**
- * @swagger
- * components:
- *   schemas:
- *     User:
- *       type: object
- *       required:
- *         - name
- *         - email
- *         - password
- *       properties:
- *         id:
- *           type: string
- *           description: The auto-generated id of the user
- *         name:
- *           type: string
- *           description: The name of the user
- *         age:
- *           type: number
- *           description: The age of the user
- *         email:
- *           type: string
- *           description: The email of the user
- *         password:
- *           type: string
- *           description: The hashed password of the user
- *         createdAt:
- *           type: string
- *           format: date-time
- *           description: The date the user was created
- *         updatedAt:
- *           type: string
- *           format: date-time
- *           description: The date the user was last updated
- *       example:
- *         id: d5fE_asz
- *         name: John Doe
- *         age: 29
- *         email: johndoe@example.com
- *         password: $2a$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36z4zN7jTOG2JbG6eU0t1Wy
- *         createdAt: 2023-07-08T14:21:00Z
- *         updatedAt: 2023-07-08T14:21:00Z
- */
+type UserBody = {
+  name: string,
+  age: number,
+  email: string,
+  password: string,
+}
 
-const userSchema = new mongoose.Schema(
+type IUser = UserBody & MongooseEntity;
+
+type UserDto = Omit<UserBody & Entity, 'password'>;
+
+type UserMethods = {
+  isCorrectPassword: (password: string) => boolean, 
+  toDto: (this: IUser) => UserDto,
+}
+
+type UserModel = mongoose.Model<IUser, {}, UserMethods>;
+
+const userSchema = new mongoose.Schema<UserBody, UserModel, UserMethods>(
   {
     name: { type: String, required: true },
     age: { type: Number },
@@ -65,18 +39,21 @@ userSchema.pre('save', async function hashPasswordOnSave(next) {
   next();
 });
 
-userSchema.methods.isCorrectPassword = function isCorrectPassword(password) {
+userSchema.methods.addMethod('isCorrectPassword', function isCorrectPassword(password) {
   const isValid = bcrypt.compareSync(password, this.password);
   return isValid;
-};
-
-userSchema.set('toJSON', {
-  transform: (doc, { _id, ...props }) => ({
-    id: _id,
-    ...props,
-  }),
 });
 
-const UserModel = mongoose.model('User', userSchema);
+userSchema.methods.addMethod('toDto', function (this: IUser) {
 
-module.exports = UserModel;
+  return {
+    id: this._id,
+    name: this.name,
+    age: this.age,
+    email: this.email,
+    createdAt: this.createdAt,
+    updatedAt: this.updatedAt,
+  }
+});
+
+export const UserModel = mongoose.model<IUser, UserModel>('User', userSchema);
