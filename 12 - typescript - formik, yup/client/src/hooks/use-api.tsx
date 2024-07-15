@@ -5,7 +5,7 @@ type useApiReturnType<T> = [T | undefined, { isLoading: boolean, error: undefine
 
 type Method = 'get' | 'post' | 'put' | 'delete';
 
-export function useApi<T = undefined>(url: string, method: Method) {
+export function useApi<T = undefined>(url: string, method: Method = 'get') {
   const [data, setData] = React.useState<T | undefined>(undefined);
   const [error, setError] = React.useState(undefined);
   const [isLoading, setIsLoading] = React.useState(true);

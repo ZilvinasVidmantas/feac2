@@ -1,9 +1,11 @@
+import React from 'react';
 import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { LifeCyclePage } from "../pages/life-cycle-page";
 import { UseEffectPage } from "../pages/use-effect-page";
 import { UseStatePage } from "../pages/use-state-page";
 import SidebarLayout from "../components/layouts/sidebar-layout";
 import { LoginPage } from "../pages/auth/login-page";
+import { StudyProgramPage } from "src/pages/study-program-page";
 
 export const navRoutes = {
   homePage: {
@@ -21,6 +23,10 @@ export const navRoutes = {
   lifeCyclePage: {
    link: "/life-cycle",
    name: "Lifecycle",
+  },
+  studyProgramPage: {
+   link: "/study-programs",
+   name: "Study Programns",
   }
 };
 
@@ -61,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: navRoutes.useStatePage.link,
         element: <UseStatePage />,
+      },
+      {
+        path: navRoutes.studyProgramPage.link,
+        element: <StudyProgramPage />,
       },
     ]
   },
